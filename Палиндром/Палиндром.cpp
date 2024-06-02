@@ -2,54 +2,48 @@
 #include<string>
 using namespace std;
 
-int main()
+void revers_str(string& revers, string& str, int size, int size_old)
 {
-	int longstr = 0, l = 0;
-	int i = 0;
-	bool palindrome = true;
-	string str, longstart, longend;
-	setlocale(LC_ALL, "rus");
-	cout << "Введите слово на проверку палиндрома" << endl;
-	cin >> str;
-	while (str[i] != '\0')
+	size_old++;
+	size--;
+	int j = 0;
+	for (int i = 0; i <= size; size--)
 	{
-		i++;
+		revers.resize(size_old);
+		revers[j] = str[size];
+		j++;
 	}
-	if (i % 2 == 1)
+}
+
+string comparison(string& revers, string& str, const int size)
+{
+	bool a = true;
+	for (int i = 0; i < size; i++)
 	{
-		longstr = i / 2;
-		l = i / 2;
-		l++;
-		for (int j = 0; j < longstr; j++)
+		if (revers[i] != str[i])
 		{
-			longstart = str[j];
-			l++;
-			for (;l < i; )
-			{
-				longend = str[l];
-				if (longstart != longend)
-				{
-					palindrome = false;
-					break;
-				}
-				if (longstart == longend)
-				{
-					break;
-				}
-			}
+			a = false;
 		}
 	}
+	if (a == true)
+	{
+		return"да";
+	}
 	else
 	{
-		palindrome = false;
+		return"нет";
 	}
+}
 
-	if (palindrome == true)
-	{
-		cout << "Ваше слово палиндром" << endl;
-	}
-	else
-	{
-		cout << "Ваше слово не палидром" << endl;
-	}
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+
+	cout << "палиндром ? ";
+	string str;
+	string revers;
+	cin >> str;
+	int size_str = str.size();
+	revers_str(revers, str, size_str, size_str);
+	cout << comparison(revers, str, size_str) << endl;
 }
