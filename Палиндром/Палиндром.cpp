@@ -1,49 +1,34 @@
-﻿#include<iostream>
-#include<string>
+﻿#include <iostream>
+#include <string>
+
 using namespace std;
 
-void revers_str(string& revers, string& str, int size, int size_old)
+static void reverseString(string& destination, const string from)
 {
-	size_old++;
-	size--;
-	int j = 0;
-	for (int i = 0; i <= size; size--)
-	{
-		revers.resize(size_old);
-		revers[j] = str[size];
-		j++;
-	}
-}
+    const int len = from.size();
+    destination.resize(from.size());
 
-string comparison(string& revers, string& str, const int size)
-{
-	bool a = true;
-	for (int i = 0; i < size; i++)
-	{
-		if (revers[i] != str[i])
-		{
-			a = false;
-		}
-	}
-	if (a == true)
-	{
-		return"да";
-	}
-	else
-	{
-		return"нет";
-	}
-}
+    for (int i = len; i > 0; i--)
+        destination[i - 1] = from[len - i];
 
+}
 int main()
 {
-	setlocale(LC_ALL, "Rus");
+    setlocale(LC_ALL, "Rus");
+    cout << "Палиндрома ?" << endl;
 
-	cout << "палиндром ? ";
-	string str;
-	string revers;
-	cin >> str;
-	int size_str = str.size();
-	revers_str(revers, str, size_str, size_str);
-	cout << comparison(revers, str, size_str) << endl;
+    string str;
+    cin >> str;
+    string reversed;
+
+    reverseString(reversed, str);
+    if (reversed.compare(str) == 0)
+    {
+        cout << "палиндром" << endl;
+    }
+    else
+    {
+        cout << "не палиндром" << endl;
+    }
+
 }
