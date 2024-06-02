@@ -3,32 +3,21 @@
 
 using namespace std;
 
-static void reverseString(string& destination, const string from)
-{
-    const int len = from.size();
-    destination.resize(from.size());
-
-    for (int i = len; i > 0; i--)
-        destination[i - 1] = from[len - i];
-
-}
 int main()
 {
-    setlocale(LC_ALL, "Rus");
-    cout << "Палиндрома ?" << endl;
+	setlocale(LC_ALL, "Rus");
 
-    string str;
-    cin >> str;
-    string reversed;
+	string n;
+	cout << "Введите слово: ";
+	cin >> n;
 
-    reverseString(reversed, str);
-    if (reversed.compare(str) == 0)
-    {
-        cout << "палиндром" << endl;
-    }
-    else
-    {
-        cout << "не палиндром" << endl;
-    }
-
+	if (n != string(n.rbegin(), n.rend()))
+	{
+		cout << "Строка не палидром";
+	}
+	else
+	{
+		cout << "Строка палидром";
+	}
+	return 0;
 }
